@@ -1,0 +1,19 @@
+body {
+    background-color: rgb(245, 245, 245); 
+}
+
+.content-section {
+    background: #fff; 
+    margin: 40px;
+    padding: 1.5rem 2.5rem;
+    border-radius: 10px;
+}
+
+.custom-bg {
+    background-color: #8a2be2; /* This is a nice shade of purple */
+  }
+
+  .navbar {
+    background-color: purple;
+  }
+  
