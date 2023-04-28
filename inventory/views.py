@@ -1,7 +1,8 @@
 from django.shortcuts import get_object_or_404, render, redirect
 from .models import Inventory
 from django.contrib.auth.decorators import login_required
-from .forms import AddInventoryForm, UpdateInventoryForm
+from django.contrib import messages
+from .forms import AddInventoryForm, UpdateInventoryForm, AddUserForm
 
 @login_required
 def inventory_list(request):
@@ -41,7 +42,7 @@ def delete_inventory(request, pk):
     inventory.delete()
     return redirect("/inventory/")
 
-
+@login_required
 def update_inventory(request, pk):
     inventory = get_object_or_404(Inventory, pk=pk)
     if request.method == "POST":
@@ -60,3 +61,15 @@ def update_inventory(request, pk):
         updateForm = UpdateInventoryForm(instance=inventory)
     context = {"form": updateForm}
     return render(request, "inventory/inventory_update.html", context=context)
+
+def add_user(request):
+    if request.method == 'POST':
+        form = AddUserForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            messages.success(request, f'Account created for {username}!')
+            return redirect('inventory_list')
+    else:
+        form = AddUserForm()
+    return render(request, 'inventory/add_user.html', {'form': form})
