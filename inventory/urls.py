@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import inventory_list, per_product_view, add_product, delete_inventory, update_inventory, add_user
+from .views import inventory_list, per_product_view, add_product, delete_inventory, update_inventory, add_user, dashboard
 
 urlpatterns = [
     path("", inventory_list, name="inventory_list"),
@@ -7,5 +7,6 @@ urlpatterns = [
     path("add_inventory/", add_product, name="add_inventory"),
     path("delete/<int:pk>", delete_inventory, name="delete_inventory"),
     path("update/<int:pk>", update_inventory, name="update_inventory"),
-    path("add_user", add_user, name="add_user")
+    path("add_user", add_user, name="add_user"),
+    path("dashboard/", dashboard, name="dashboard")
 ]

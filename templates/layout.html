@@ -15,13 +15,13 @@
         />
         {% if title %}
             <title>ConvergentIMS-{{ title }} </title>
-            <link rel="shortcut icon" type="image/jpg" href="{% static 'favicon.jpg' %}">
+            <link rel="shortcut icon" type="image/jpg" href="https://assets.cdn.filesafe.space/eNtCwKzf84nGoMfDVE5o/media/64248bb55cd63ec2e10e3868.png">
         {% else %}
             <title>ConvergentIMS</title>
-            <link rel="shortcut icon" type="image/jpg" href="{% static 'favicon.jpg' %}">
+            <link rel="shortcut icon" type="image/jpg" href="https://assets.cdn.filesafe.space/eNtCwKzf84nGoMfDVE5o/media/64248bb55cd63ec2e10e3868.png">
         {% endif %}
         <title>ConvergentIMS</title>
-        <link rel="shortcut icon" type="image/jpg" href="{% static 'favicon.jpg' %}">
+        <link rel="shortcut icon" type="image/jpg" href="https://assets.cdn.filesafe.space/eNtCwKzf84nGoMfDVE5o/media/64248bb55cd63ec2e10e3868.png">
     </head>
     <body style="background-color: black">
 
@@ -44,6 +44,9 @@
                     <a class="nav-link active" aria-current="page" href="{% url 'add_user' %}"><span>Add User</span></a>
                   </li>
                   <li>
+                    <a class="nav-link active" aria-current="page" href="{% url 'dashboard' %}"><span>Dashboard</span></a>
+                  </li>
+                  <li>
                     <a class="nav-link active" aria-current="page" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt">Logout</i></a>
                   </li>
                 {% endif %}
@@ -57,9 +60,16 @@
                 <div class = "row">
                     <div class="col-md-1"></div>
                     <div class="col-md-10 col-sm-12 col-xm-12">
+                        {% if messages %}
+                          {% for message in messages %}
+                          <div class="alert alert.{{ message.tags }} mt-4"style="color:green">
+                            {{ message }}
+                          </div>
+                          {% endfor %}
+                        {% endif %}
                         {% block content %}
 
-                        {% endblock %}
+                        {% endblock %} 
                     </div>
                     <div class="col-md-1"></div>
             </div>
